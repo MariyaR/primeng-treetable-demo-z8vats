@@ -10,7 +10,7 @@ import {TreeNode} from 'primeng/api';
 export class AppComponent { 
     files1: TreeNode[];
 
-    files2: TreeNode[];
+    files2: any;
 
     cols: any[];
 
@@ -18,7 +18,7 @@ export class AppComponent {
 
     ngOnInit() {
         this.nodeService.getFilesystem().then(files => this.files1 = files);
-        this.nodeService.getFilesystem().then(files => this.files2 = files);
+        this.nodeService.getFilesystem().then(files => this.files2 = files.filter( node => node.data['name']==="Applications" ||  node.data['name']==="Main"));
 
         this.cols = [
             { field: 'name', header: 'Name' },
